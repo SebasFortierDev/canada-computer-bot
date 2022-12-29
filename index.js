@@ -33,7 +33,7 @@ const smsMessage =`L\'item est disponible en ligne ou à Brossard (${url})`;
 
 function main() {
     (async () => {
-        const browser = await puppeteer.launch({headless: false});
+        const browser = await puppeteer.launch({headless: true});
 
         const [page] = await browser.pages();
 
@@ -48,7 +48,7 @@ function main() {
         console.log("Item is in stock in store : " + itemIsInStockInStore.toString())
 
         if (itemIsInStockInStore || itemIsInStockOnline) {
-            if (process.env.SEND_SMS_WITH_TWILIO == 'true') {
+            if (process.env.SEND_SMS_WITH_TWILIO === 'true') {
                 const accountSid = process.env.TWILIO_ACCOUNT_SID;
                 const authToken = process.env.TWILIO_AUTH_TOKEN;
                 const client = require('twilio')(accountSid, authToken);

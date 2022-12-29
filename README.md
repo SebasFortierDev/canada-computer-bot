@@ -1,5 +1,16 @@
 # Project to look if an item is in stock online or in store on the Canada Computer website
 
+## Installation
+For everything to work, you need to have Node.js installed.
+
+- Clone the repo
+- Copy the .env.example file and create a .env with the same variables
+- Follow the steps in the "Configuration" section below
+- Execute these commands :
+  - 'npm install'
+  - 'npm start'
+
+
 ## Configuration
 In the env file, you must specify these variables
 
