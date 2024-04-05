@@ -28,7 +28,7 @@ const stringToForceWebsiteLanguage = process.env.WEBSITE_IS_IN_ENGLISH === 'true
 const url = process.env.ITEM_URL_TO_WATCH + '&language=' + stringToForceWebsiteLanguage;
 
 /** SMS configuration */
-const recipientPhoneNumber = process.env.ITEM_URL_TO_WATCH;
+const recipientPhoneNumber = process.env.SMS_RECIPIENT;
 const smsMessage =`L\'item est disponible en ligne ou à Brossard (${url})`;
 
 function main() {
