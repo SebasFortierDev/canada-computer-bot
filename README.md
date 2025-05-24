@@ -14,10 +14,6 @@ For everything to work, you need to have Node.js installed.
 ## Configuration
 In the env file, you must specify these variables
 
-- WEBSITE_IS_IN_ENGLISH=true | false
-
-    Will define if the website is in english or in french
-
 - ITEM_URL_TO_WATCH=theUrlOfTheItemToWatch
 
     Will define which item is going to be watched. Example : https://www.canadacomputers.com/product_info.php?cPath=8_129&item_id=137820

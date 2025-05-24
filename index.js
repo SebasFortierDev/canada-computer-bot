@@ -1,35 +1,20 @@
 const puppeteer = require('puppeteer');
 require('dotenv').config();
 
-let deliveryStockStatusText = {};
-let inStoreStockStatusText = {};
-
-if (process.env.WEBSITE_IS_IN_ENGLISH === 'true') {
-    deliveryStockStatusText = {
-        OUT_OF_STOCK: "SOLD OUT ONLINE",
-        IN_STOCK: "AVAILABLE TO SHIP",
-    }
-
-    inStoreStockStatusText = {
-        IN_STOCK: "AVAILABLE",
-    }
-} else {
-    deliveryStockStatusText = {
-        OUT_OF_STOCK: "RUPTURE DE STOCK EN LIGNE",
-        IN_STOCK: "DISPONIBLE POUR LA LIVRAISON",
-    }
-
-    inStoreStockStatusText = {
-        IN_STOCK: "Disponibilité",
-    }
+deliveryStockStatusText = {
+    OUT_OF_STOCK: "SOLD OUT ONLINE",
+    IN_STOCK: "AVAILABLE TO SHIP",
 }
 
-const stringToForceWebsiteLanguage = process.env.WEBSITE_IS_IN_ENGLISH === 'true' ? 'en' : 'fr';
-const url = process.env.ITEM_URL_TO_WATCH + '&language=' + stringToForceWebsiteLanguage;
+inStoreStockStatusText = {
+    IN_STOCK: "AVAILABLE",
+}
+
+const url = process.env.ITEM_URL_TO_WATCH;
 
 /** SMS configuration */
 const recipientPhoneNumber = process.env.SMS_RECIPIENT;
-const smsMessage =`L\'item est disponible en ligne ou à Brossard (${url})`;
+const smsMessage =`Item is available in store or online : (${url})`;
 
 function main() {
     (async () => {
@@ -88,7 +73,7 @@ async function deliveryStockStatus(page) {
  * @returns {boolean} True if the text indicate that the item is in stock online
  */
 function onlineDeliveryIsInStock(deliveryStockStatus) {
-    return deliveryStockStatus === deliveryStockStatusText.IN_STOCK
+    return deliveryStockStatus.toUpperCase().includes(deliveryStockStatusText.IN_STOCK);
 }
 
 /**
@@ -112,7 +97,7 @@ async function inStoreStockStatus(page) {
  * @returns {boolean} True if the text indicate that the item is in stock in store
  */
 function inStoreIsInStock(inStockStockStatus) {
-    return inStockStockStatus.includes(inStoreStockStatusText.IN_STOCK)
+    return inStockStockStatus.toUpperCase().includes(inStoreStockStatusText.IN_STOCK)
 }
 
 function delay(time) {
