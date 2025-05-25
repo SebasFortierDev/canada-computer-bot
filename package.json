@@ -1,17 +1,16 @@
 {
   "name": "canada-computer-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project to look if an item is in stock online or in store on the Canada Computer website\n",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "author": "Sébastien Fortier",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.0.3",
-    "puppeteer": "19.4.1",
-    "twilio": "^3.84.0"
+    "dotenv": "^16.5.0",
+    "puppeteer": "24.9.0",
+    "twilio": "^5.6.1"
   }
 }
